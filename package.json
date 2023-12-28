@@ -1,0 +1,25 @@
+{
+  "name": "lavrik-gulp",
+  "description": "> Gulp 4 сборка от Дмитрия Лаврика из видео (Gulp 4 - простая сборка проекта для вёрстки и javascript[https://www.youtube.com/watch?v=9qbdCruqpys])",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2",
+    "smart-grid": "^2.1.2"
+  }
+}
