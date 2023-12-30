@@ -1,0 +1,16 @@
+.font(@fname, @fstyle, @fweight, @furl2, @furl) {
+  @font-face {
+    font-family: @fname;
+    font-style: @fstyle;
+    font-weight: @fweight;
+    src: url(@furl2) format('woff2'),
+      url(@furl) format('woff');
+    font-display: swap;
+  }
+}
+
+.font('Bariol', normal, 400, '../fonts/bariol-regular.woff2', '../fonts/bariol-regular.woff');
+
+body {
+  .font('Bariol', normal, 400, '../fonts/bariol-regular.woff2', '../fonts/bariol-regular.woff');
+}

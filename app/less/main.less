@@ -1,0 +1,373 @@
+// * ==| Imports |== * \\
+@import (less) '../vendor/css/normalize.css'; // Normalize.css
+@import (less) './../../node_modules/swiper/swiper-bundle.css'; // Swiper Bundle
+@import '_smart-grid.less';
+@import '_variables.less';
+@import '_fonts.less';
+@import '_base.less';
+// * Здесь можно либо подключить normalize.css, либо воспользоваться примесью от Smart-grid ".reset()", тут на усмотрение каждого. Но на самом деле в normalize больше всего, например удаление лишних стилей кнопок и форм для iOS, зато там нет img { height: auto; и max-width: 100%; }.
+// .reset();
+
+// * Т.к. эта примесь не параметризуемая, то лучше всего создать для неё определённый класс, соответствующий центрирующей обёртке и поместить в него примесь.
+.wrapper {
+  .wrapper();
+}
+
+/* .debugGrid {
+  .debug(rgba(0, 0, 0, 0.3), 1px solid #ff0);
+} */
+
+h1,
+.h2 {
+  font-size: 3.8rem;
+  text-align: center;
+}
+
+h2,
+.h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.h2sub {
+  text-align: center;
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.header {
+  background-color: @color_light-red;
+}
+
+.header__inner {
+  padding: 26px 0 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  min-width: 166px;
+}
+
+.header__nav-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  gap: 20px 23px;
+}
+
+.header__nav-list-link {
+  border-radius: 5px;
+  padding: 7px 13px 6px 12px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: @color_black;
+  }
+}
+
+.hero {
+  padding-top: 47px;
+  text-align: center;
+  color: #fff;
+  background-color: @color_red;
+}
+
+.hero__title {
+
+}
+
+.hero__subtitle {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+  content: '';
+  width: 36px;
+  height: 70px;
+  background: url('../img/angle-left.svg') center/contain no-repeat;
+  opacity: .5;
+  transition: opacity .3s;
+}
+.swiper-button-prev:hover:after, .swiper-button-next:hover:after {
+  opacity: 1;
+}
+
+.swiper-button-next:after {
+  rotate: 180deg;
+}
+
+.profit {
+  background: @color_black;
+  padding: 15px 0;
+
+  &__title {
+    color: #fff;
+  }
+
+  &__subtitle {
+    color: @color_green;
+  }
+}
+// Применение на флоатах для примера.
+/* .profitItems {
+  .row-float();
+}
+
+.profitItem {
+  .col();
+  .col-float();
+  .size(6);
+  .shift(1);
+
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  &__img {
+    border-radius: 50%;
+  }
+
+  &__subtitle {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 3px 0;
+  }
+
+  &__text {
+    font-size: 16px;
+    color: #d94948;
+  }
+} */
+
+.profitItems {
+  .row-flex();
+  justify-content: space-around;
+}
+
+.profitItem {
+  .col();
+  .size(6);
+  .size-md(8);
+  .size-sm(10);
+  .size-xs(20);
+  /* Если бы был включен mobileFirst: true в настройках Smart-grid:
+  .size(20);
+  .size-xs(10);
+  .size-sm(8);
+  .size-md(6);
+  */
+
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  &__img {
+    border-radius: 50%;
+  }
+
+  &__subtitle {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 3px 0;
+  }
+
+  &__text {
+    @c: #d94948;
+
+    font-size: 16px;
+    color: @c;
+    // Бывает полезна такая примесь, если нам нужно указать несколько стилей элементу, начиная с определённого брейкпоинта, например "xxs".
+    .xxs-block({
+    font-size: 18px;
+    color: lighten(@c, 10%);
+  });
+  }
+}
+
+.humans {
+  background: @color_green;
+  padding: 10px 0;
+
+  h2 {
+    color: @color_black;
+  }
+
+  .h2sub {
+    color: #fff;
+  }
+
+  .items {
+    .row-flex();
+    justify-content: center;
+
+    .item {
+      .col();
+      .size(6); // Т.к. у нас на больших экранах 4 карточки в ряд, то 24 колонок / 4 = 6.
+      .size-md(10);
+      .size-sm(12);
+      .size-xs(24);
+      .xs(max-width, 400px); // Если надо, например ограничить ширину карточки до 400px по достижении ширины экрана брейкпоинта "xs". Используя этот метод нам даже не обязательно было создавать лишний брейкпоинт. В этом случае также необходимо, чтобы было выравнивание по горизонтали.
+      // .size-xxs(24);
+
+      background: #fff;
+      border-radius: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 10px;
+      text-align: center;
+      // Т.к. здесь у карточек разные по объёму заголовки, то обязательно пропишем следующие два свойства из Flexbox:
+      display: flex;
+      flex-direction: column;
+
+      img {
+        margin: 10px auto;
+        width: 90%;
+      }
+
+      .subtitle {
+        color: #222;
+        font-size: 24px;
+        margin: 10px;
+      }
+
+      .job {
+        margin: auto 10px 10px 10px;
+      }
+
+      .follow {
+        background: #6cc372;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 5px;
+      }
+    }
+  }
+}
+// ? Если бы в этом блоке не было бы дизайнером допущено того, что элементы расположены совсем не по сетке, то мы бы могли использовать любую из технологий, хоть Flexbox, хоть float, хоть inline-block. Т.к. тут нет ни свободного пространства на строке, которое нужно распределять, ни задач выравнивать элементы justify-content’ом как-то сложно. И в таких ситуациях никто не мешает написать родительскому `.row-float();`, а дочерним `.col-float();` `col-float()` - это `float: left`, а `.row-float()` - это примесь, которая во-первых делает отрицательные отступы, а также .clearfix, т.е. элементам, в которых вводится обтекание в родительском элементе, дочерние элементы которого убегают, надо в конце добавлять псевдоэлемент с `display: block; clear: both; content: "";`. И вот если у нас такой просто экран, в котором можно обойтись без Flexbox, то имеет смысл действительно использовать float, потому что эта технология съест меньше ресурсов и гораздо надёжнее в смысле кроссбраузерности и не слетит даже на IE9.
+// * Но здесь у нас элементы стоят не по сетке, поэтому здесь нам будет Flexbox уже необходим.
+.portfolio {
+  background: @color_grey;
+  padding: 10px 0;
+
+  h2 {
+    color: @color_black;
+  }
+
+  .h2sub {
+    color: @color_green;
+  }
+
+  .items {
+    // .row-float();
+    .row-flex();
+    justify-content: space-between;
+    .sm(justify-content, center); // Мы также заметили, что на больших экранах "space-between" выглядел хорошо, а вот на более маленьких уже так себе, тогда мы можем переопределить его, начиная с брейкпоинта "sm".
+
+    .item {
+      // .col-float();
+      .col();
+      .size(5.24); // Чтобы попасть близко к тому, что нарисовано на макете мы подбираем, пользуясь сеткой Smart-grid (опция debugGrid), чтобы элементы выглядели расположенными похоже, как на макете и так находим число "5.24".
+      .size-md(6);
+      .size-sm(10);
+      .xs(max-width, 200px);
+      .size-xs(20);
+
+      margin-top: 15px;
+      margin-bottom: 15px;
+      text-align: center;
+
+      img {
+        margin: 10px auto;
+        width: 100%;
+      }
+
+      .txt {
+        color: @color_black;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.pricing {
+  .h2sub {
+    color: @color_red;
+  }
+
+  .items {
+    .item {
+      text-align: center;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .title {
+        background: #fff;
+        overflow: hidden;
+      }
+
+      ul {
+        li {
+          background: @color_grey;
+          padding: 15px 0;
+          border-bottom: 1px solid @color_black;
+        }
+      }
+
+      .price {
+        background: @color_red;
+        color: #fff;
+        padding: 10px 15px;
+
+        .cur {
+          font-size: 1.5em;
+        }
+
+        .val {
+          font-size: 3em;
+        }
+
+        .per {
+          font-size: 1.2em;
+          margin-top: 10px;
+        }
+
+        a {
+          color: @color_black;
+          text-decoration: none;
+          background: #fff;
+          padding: 5px 20px;
+          border-radius: 5px;
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  .items {
+    .item {
+      background: #aaa;
+      min-height: 200px;
+
+      .row {
+        div {
+          background: #f50;
+        }
+      }
+    }
+  }
+}
+// >==========================================< \\
